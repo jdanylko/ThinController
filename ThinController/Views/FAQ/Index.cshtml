@@ -1,0 +1,22 @@
+﻿@model ThinController.Models.FaqViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <ul>
+        @foreach (var faqItem in Model.FaqList)
+        {
+            <li><span>@faqItem.Question</span> - @faqItem.Answer</li>
+
+        }
+    </ul>
+</body>
+</html>
