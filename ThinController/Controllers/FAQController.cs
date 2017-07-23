@@ -1,14 +1,21 @@
 ﻿using System.Web.Mvc;
+using StructureMap;
 using ThinController.Infrastructure;
 using ThinController.Models;
 
 namespace ThinController.Controllers
 {
-    public class FaqController : Controller
+    public class FaqController : BaseController
     {
-        // Removed
-        // private readonly FaqRepository _repository = new FaqRepository();
-        private DefaultViewModelFactory _factory = new DefaultViewModelFactory();
+        private DefaultViewModelFactory _factory;
+
+        public FaqController() : this(new DefaultViewModelFactory()) { }
+
+        public FaqController(DefaultViewModelFactory factory, 
+            IContainer container = null) : base(container)
+        {
+            _factory = factory;
+        }
 
         // GET: FAQ
         public ActionResult Index()

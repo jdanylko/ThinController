@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using StructureMap;
+using ThinController.Infrastructure;
 using ThinController.UnitOfWork;
 
 namespace ThinController.Extensions
@@ -15,16 +16,7 @@ namespace ThinController.Extensions
             if (webContext.HttpContext.Items.Contains(objectContextKey))
                 return webContext.HttpContext.Items[objectContextKey] as T;
 
-            // Old way...
-            // var type = Activator.CreateInstance<T>();
-            // New DI way.
-
-            var container = new Container(_ =>
-                _.Scan(e =>
-                {
-                    e.AssembliesFromApplicationBaseDirectory();
-                    e.AddAllTypesOf<AbstractUnitOfWork>();
-                }));
+            var container = (webContext.Controller as BaseController).Container;
 
             var unitOfWork = container.GetInstance<T>();
 
