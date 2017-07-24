@@ -23,6 +23,8 @@ https://www.danylkoweb.com/Blog/a-better-entity-framework-unit-of-work-pattern-D
 What is Loose Coupling<br/>
 https://www.danylkoweb.com/Blog/what-is-loose-coupling-G6
 
+Real-World Refactoring: DI in ThinController Project
+https://www.danylkoweb.com/Blog/real-world-refactoring-di-in-thincontroller-project-KJ
 
 Post any questions here or at https://www.danylkoweb.com/
 
