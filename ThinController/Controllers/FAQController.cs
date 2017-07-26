@@ -25,13 +25,14 @@ namespace ThinController.Controllers
         }
 
         // Can be used when a new FaqItem is posted back.
-        public ActionResult Index(FaqViewModel model)
-        {
-            return ProcessValidResult(
-                model,
-                new CreateFaqFormHandler(),
-                viewModel => Redirect(Url.Content("/")),
-                viewModel => View(viewModel));
-        }
+        //[HttpPost]
+        //public ActionResult Index(FaqViewModel model)
+        //{
+        //    return ProcessValidResult(
+        //        model,
+        //        new CreateFaqFormHandler(),
+        //        viewModel => Redirect(Url.Content("/")),
+        //        viewModel => View(viewModel));
+        //}
     }
 }
