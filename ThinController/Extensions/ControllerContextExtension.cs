@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Web.Mvc;
-using StructureMap;
 using ThinController.Infrastructure;
-using ThinController.UnitOfWork;
 
 namespace ThinController.Extensions
 {
     public static class ControllerContextExtension
     {
-        public static T GetUnitOfWork<T>(this ControllerContext webContext) where T : AbstractUnitOfWork
+        public static T GetDbContext<T>(this ControllerContext webContext) where T : DbContext
         {
             var objectContextKey = String.Format("{0}-{1}", typeof(T),
                 webContext.GetHashCode().ToString("x"));

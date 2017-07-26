@@ -1,6 +1,7 @@
 using System;
 using System.Web.Mvc;
 using StructureMap;
+using ThinController.ActionResults;
 
 namespace ThinController.Infrastructure
 {
@@ -16,6 +17,24 @@ namespace ThinController.Infrastructure
             }
 
             Container = container;
+        }
+
+        public ActionResult ProcessValidResult<T>(T model,
+            IGeneralFormHandler<T> handler,
+            Func<T, ActionResult> successResult,
+            Func<T, ActionResult> failureResult)
+        {
+            return new ProcessValidResult<T>(model, handler, 
+                successResult, failureResult);
+        }
+
+        public ActionResult ProcessResult<T>(T model,
+            IGeneralFormHandler<T> handler,
+            Func<T, ActionResult> successResult,
+            Func<T, ActionResult> failureResult)
+        {
+            return new ProcessResult<T>(model, handler, 
+                successResult, failureResult);
         }
     }
 }

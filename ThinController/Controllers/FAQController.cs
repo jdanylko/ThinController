@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using StructureMap;
+using ThinController.FormHandlers;
 using ThinController.Infrastructure;
 using ThinController.Models;
 
@@ -21,6 +22,16 @@ namespace ThinController.Controllers
         public ActionResult Index()
         {
             return View(_factory.GetViewModel<FaqController, FaqViewModel>(this));
+        }
+
+        // Can be used when a new FaqItem is posted back.
+        public ActionResult Index(FaqViewModel model)
+        {
+            return ProcessValidResult(
+                model,
+                new CreateFaqFormHandler(),
+                viewModel => Redirect(Url.Content("/")),
+                viewModel => View(viewModel));
         }
     }
 }

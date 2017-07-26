@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ThinController.EntityFramework;
 
 namespace ThinController.Models
 {
@@ -8,7 +9,7 @@ namespace ThinController.Models
         public string MetaDescription { get; set; }
         public string MetaKeywords { get; set; }
 
-        public IEnumerable<Faq> FaqList { get; set; }
+        public IEnumerable<FAQ> FaqList { get; set; }
     }
 }
 

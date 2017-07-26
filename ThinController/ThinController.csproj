@@ -48,6 +48,14 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -72,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -132,6 +142,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResults\IGeneralFormHandler.cs" />
+    <Compile Include="ActionResults\ProcessResult.cs" />
+    <Compile Include="ActionResults\ProcessValidResult.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -143,7 +156,10 @@
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
+    <Compile Include="EntityFramework\DemoDbContext.cs" />
+    <Compile Include="EntityFramework\FAQ.cs" />
     <Compile Include="Extensions\ControllerContextExtension.cs" />
+    <Compile Include="FormHandlers\CreateFaqFormHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -152,15 +168,18 @@
     <Compile Include="DependencyResolution\DemoRegistry.cs" />
     <Compile Include="Interfaces\IViewModelBuilder.cs" />
     <Compile Include="Interfaces\IViewModelFactory.cs" />
-    <Compile Include="Models\Faq.cs" />
     <Compile Include="Models\FaqViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\FaqRepository.cs" />
-    <Compile Include="UnitOfWork\AbstractUnitOfWork.cs" />
-    <Compile Include="UnitOfWork\PrimaryUnitOfWork.cs" />
-    <Compile Include="ViewModelBuilder\FaqPageViewModelBuilder.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Infrastructure\Repository.cs" />
+    <Compile Include="ViewModelBuilder\FaqViewModelBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DemoDatabase.mdf" />
+    <Content Include="App_Data\DemoDatabase_log.ldf">
+      <DependentUpon>DemoDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -211,9 +230,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

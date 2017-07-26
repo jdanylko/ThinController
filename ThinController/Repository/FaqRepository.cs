@@ -1,30 +1,13 @@
-﻿using System.Collections.Generic;
-using ThinController.Models;
+﻿using System.Data.Entity;
+using ThinController.EntityFramework;
+using ThinController.Infrastructure;
 
 namespace ThinController.Repository
 {
-    public class FaqRepository
+    public class FaqRepository: Repository<FAQ>
     {
-        public IEnumerable<Faq> GetAll()
+        public FaqRepository(DbContext context) : base(context)
         {
-            return new List<Faq>
-            {
-                new Faq()
-                {
-                    Question = "So How long has the site been up?",
-                    Answer = "A short time."
-                },
-                new Faq
-                {
-                    Question = "How big is your audience?",
-                    Answer = "Just two, my wife and my mother."
-                },
-                new Faq
-                {
-                    Question = "How long have you been programming?",
-                    Answer = "3 decades."
-                }
-            };
         }
     }
 }

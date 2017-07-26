@@ -1,6 +1,7 @@
+using System.Data.Entity;
 using StructureMap;
+using ThinController.EntityFramework;
 using ThinController.Interfaces;
-using ThinController.UnitOfWork;
 
 namespace ThinController.DependencyResolution
 {
@@ -13,10 +14,11 @@ namespace ThinController.DependencyResolution
             Scan(
                 scan => {
                     scan.AssembliesFromApplicationBaseDirectory();
-                    scan.AddAllTypesOf<AbstractUnitOfWork>();
+                    scan.AddAllTypesOf(typeof(DbContext));
                     scan.ConnectImplementationsToTypesClosing(typeof(IViewModelBuilder<,>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IViewModelBuilder<,,>));
                 });
+            For<DbContext>().Use<DemoDbContext>();
         }
 
         #endregion

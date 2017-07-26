@@ -1,6 +1,4 @@
 ﻿using System.Web.Mvc;
-using StructureMap;
-using ThinController.Infrastructure;
 
 namespace ThinController.Controllers
 {
